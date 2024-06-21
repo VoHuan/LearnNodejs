@@ -7,17 +7,9 @@ const connection = require('./config/database')
 const app = express();
 const port = process.env.PORT;
 
-
-
-
-// A simple SELECT query
-connection.query(
-    'SELECT * FROM `Users` WHERE `name` = "hoidanit" ',
-    function (err, results, fields) {
-      console.log(results); // results contains rows returned by server
-      console.log(err); // fields contains extra meta data about results, if available
-    }
-  );
+// config data input/output
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 
 //config template engine
@@ -31,5 +23,5 @@ app.use('/', webRoutes);
 
 
 app.listen(port, () => {
-    console.log(`app is running on  port ${port}`)
+  console.log(`app is running on  port ${port}`)
 })
